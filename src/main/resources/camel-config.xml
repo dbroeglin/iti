@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+	<!-- We still need it for loading the CXFServlet -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+
+	<bean id="properties"
+		class="org.apache.camel.component.properties.PropertiesComponent">
+		<property name="location" value="classpath:iti.properties" />
+	</bean>
+
+	<cxf:rsServer id="rsServer" address="/"
+		serviceClass="fr.broeglin.integration.iti.services.CmdbService"
+		loggingFeatureEnabled="true" loggingSizeLimit="20">
+	</cxf:rsServer>
+
+
+	<bean id="itiRouteBuilder" class="fr.broeglin.integration.iti.routes.ItiRouteBuilder" />
+
+	<bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor">
+		<!-- it really should have been user-prestream but CXF does have such phase! -->
+		<constructor-arg value="target/write" />
+	</bean>
+
+	<cxf:cxfEndpoint id="sbmWebService" address="http://localhost:8080/"
+		serviceClass="localhost._80.gsoap.sbmappservices72_wsdl.Sbmappservices72PortType">
+		<cxf:properties>
+			<entry key="dataFormat" value="POJO" />
+			<entry key="defaultOperationNamespace" value="http://localhost:80/gsoap/sbmappservices72.wsdl" />
+		</cxf:properties>
+	</cxf:cxfEndpoint>
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+		<routeBuilder ref="itiRouteBuilder" />
+
+		<dataFormats>
+			<json id="json" library="Jackson" prettyPrint="true" />
+		</dataFormats>
+	</camelContext>
+</beans>

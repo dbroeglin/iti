@@ -1,0 +1,2490 @@
+<definitions name="sbmappservices72" targetNamespace="http://localhost:80/gsoap/sbmappservices72.wsdl" xmlns:tns="http://localhost:80/gsoap/sbmappservices72.wsdl"
+	xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:c14n="http://www.w3.org/2001/10/xml-exc-c14n#" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+	xmlns:diag="urn:SerenaDiagnostics" xmlns:ae="urn:sbmappservices72" xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+	<types>
+
+		<schema targetNamespace="urn:SerenaDiagnostics" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:diag="urn:SerenaDiagnostics" xmlns:ae="urn:sbmappservices72"
+			xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+			<import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" />
+			<import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<import namespace="urn:sbmappservices72" />
+
+			<complexType name="SerenaDiagnostics"><!-- _diag__SerenaDiagnostics -->
+
+				<sequence>
+					<element ref="diag:XId" minOccurs="0" maxOccurs="1" /><!-- _diag__SerenaDiagnostics::diag__XId -->
+				</sequence>
+			</complexType>
+			<element name="XId" type="xsd:string" />
+			<element name="SerenaDiagnostics" type="diag:SerenaDiagnostics" />
+		</schema>
+
+		<schema targetNamespace="urn:sbmappservices72" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:diag="urn:SerenaDiagnostics" xmlns:ae="urn:sbmappservices72"
+			xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
+			<import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" />
+			<import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+			<import namespace="urn:SerenaDiagnostics" />
+
+			<!-- fault element -->
+			<element name="AEWebservicesFault" type="xsd:string" />
+			<simpleType name="PrivilegeKind"><!-- ae__PrivilegeKind -->
+
+				<restriction base="xsd:string">
+					<enumeration value="USER-KIND" /><!-- ae__PrivilegeKind::USER_KIND -->
+					<!-- = 0 -->
+					<enumeration value="ADMIN-KIND" /><!-- ae__PrivilegeKind::ADMIN_KIND -->
+					<!-- = 1 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="GrantState"><!-- ae__GrantState -->
+
+				<restriction base="xsd:string">
+					<enumeration value="INHERITED" /><!-- ae__GrantState::INHERITED -->
+					<!-- = -1 -->
+					<enumeration value="REVOKED" /><!-- ae__GrantState::REVOKED -->
+					<!-- = 0 -->
+					<enumeration value="GRANTED" /><!-- ae__GrantState::GRANTED -->
+					<!-- = 1 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="MultipleOption"><!-- ae__MultipleOption -->
+
+				<restriction base="xsd:string">
+					<enumeration value="CONTINUE-ON-FAILURE" /><!-- ae__MultipleOption::CONTINUE_ON_FAILURE -->
+					<!-- = 0 -->
+					<enumeration value="STOP-ON-FAILURE" /><!-- ae__MultipleOption::STOP_ON_FAILURE -->
+					<!-- = 1 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="SectionsOption"><!-- ae__SectionsOption -->
+
+				<restriction base="xsd:string">
+					<enumeration value="SECTIONS-ALL" /><!-- ae__SectionsOption::SECTIONS_ALL -->
+					<!-- = 0 -->
+					<enumeration value="SECTIONS-NONE" /><!-- ae__SectionsOption::SECTIONS_NONE -->
+					<!-- = 1 -->
+					<enumeration value="SECTIONS-SPECIFIED" /><!-- ae__SectionsOption::SECTIONS_SPECIFIED -->
+					<!-- = 2 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="StatusEnum"><!-- ae__StatusEnum -->
+
+				<restriction base="xsd:string">
+					<enumeration value="IS-WARNING" /><!-- ae__StatusEnum::IS_WARNING -->
+					<!-- = 0 -->
+					<enumeration value="IS-INFORMATION" /><!-- ae__StatusEnum::IS_INFORMATION -->
+					<!-- = 1 -->
+					<enumeration value="IS-ERROR" /><!-- ae__StatusEnum::IS_ERROR -->
+					<!-- = 2 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Attachment-Access-Type"><!-- ae__Attachment_Access_Type -->
+
+				<restriction base="xsd:string">
+					<enumeration value="ATTACHACCESS-DEFAULT" /><!-- ae__Attachment_Access_Type::ATTACHACCESS_DEFAULT -->
+					<!-- = 0 -->
+					<enumeration value="ATTACHACCESS-RESTRICTED" /><!-- ae__Attachment_Access_Type::ATTACHACCESS_RESTRICTED -->
+					<!-- = 1 -->
+					<enumeration value="ATTACHACCESS-UNRESTRICTED" /><!-- ae__Attachment_Access_Type::ATTACHACCESS_UNRESTRICTED -->
+					<!-- = 2 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="DatePreference"><!-- ae__DatePreference -->
+
+				<restriction base="xsd:string">
+					<enumeration value="DATE-FORMAT-FROM-LOCALE" /><!-- ae__DatePreference::DATE_FORMAT_FROM_LOCALE -->
+					<!-- = 0 -->
+					<enumeration value="DATE-FORMAT-MM-DD-YYYY" /><!-- ae__DatePreference::DATE_FORMAT_MM_DD_YYYY -->
+					<!-- = 1 -->
+					<enumeration value="DATE-FORMAT-DD-MM-YYYY" /><!-- ae__DatePreference::DATE_FORMAT_DD_MM_YYYY -->
+					<!-- = 2 -->
+					<enumeration value="DATE-FORMAT-DD-MM-YYYY.S" /><!-- ae__DatePreference::DATE_FORMAT_DD_MM_YYYY_DOTS -->
+					<!-- = 3 -->
+					<enumeration value="DATE-FORMAT-YYYY-MM-DD" /><!-- ae__DatePreference::DATE_FORMAT_YYYY_MM_DD -->
+					<!-- = 4 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="TimePreference"><!-- ae__TimePreference -->
+
+				<restriction base="xsd:string">
+					<enumeration value="TIME-FORMAT-12HOUR" /><!-- ae__TimePreference::TIME_FORMAT_12HOUR -->
+					<!-- = 0 -->
+					<enumeration value="TIME-FORMAT-24HOUR" /><!-- ae__TimePreference::TIME_FORMAT_24HOUR -->
+					<!-- = 1 -->
+					<enumeration value="TIME-FORMAT-USE-GMT-OFFSET" /><!-- ae__TimePreference::TIME_FORMAT_USE_GMT_OFFSET -->
+					<!-- = 2 -->
+					<enumeration value="TIME-FORMAT-HONOR-DAYLIGHT" /><!-- ae__TimePreference::TIME_FORMAT_HONOR_DAYLIGHT -->
+					<!-- = 4 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="AccessType"><!-- ae__AccessType -->
+
+				<restriction base="xsd:string">
+					<enumeration value="ACCESS-NONE" /><!-- ae__AccessType::ACCESS_NONE -->
+					<!-- = 0 -->
+					<enumeration value="ACCESS-USER" /><!-- ae__AccessType::ACCESS_USER -->
+					<!-- = 1 -->
+					<enumeration value="ACCESS-OCCASIONAL" /><!-- ae__AccessType::ACCESS_OCCASIONAL -->
+					<!-- = 2 -->
+					<enumeration value="ACCESS-EXTERNAL" /><!-- ae__AccessType::ACCESS_EXTERNAL -->
+					<!-- = 4 -->
+					<enumeration value="ACCESS-ADMIN" /><!-- ae__AccessType::ACCESS_ADMIN -->
+					<!-- = 16 -->
+					<enumeration value="ACCESS-APISCRIPT" /><!-- ae__AccessType::ACCESS_APISCRIPT -->
+					<!-- = 32 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Set-Value-By"><!-- ae__Set_Value_By -->
+
+				<restriction base="xsd:string">
+					<enumeration value="PRECEDENCE-VALUE" /><!-- ae__Set_Value_By::PRECEDENCE_VALUE -->
+					<!-- = 0 -->
+					<enumeration value="INTERNAL-VALUE" /><!-- ae__Set_Value_By::INTERNAL_VALUE -->
+					<!-- = 1 -->
+					<enumeration value="UUID-VALUE" /><!-- ae__Set_Value_By::UUID_VALUE -->
+					<!-- = 2 -->
+					<enumeration value="DISPLAY-VALUE" /><!-- ae__Set_Value_By::DISPLAY_VALUE -->
+					<!-- = 3 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Set-Value-Method"><!-- ae__Set_Value_Method -->
+
+				<restriction base="xsd:string">
+					<enumeration value="REPLACE-VALUES" /><!-- ae__Set_Value_Method::REPLACE_VALUES -->
+					<!-- = 0 -->
+					<enumeration value="APPEND-VALUES" /><!-- ae__Set_Value_Method::APPEND_VALUES -->
+					<!-- = 1 -->
+					<enumeration value="REMOVE-VALUES" /><!-- ae__Set_Value_Method::REMOVE_VALUES -->
+					<!-- = 2 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="ItemLink-Type"><!-- ae__ItemLink_Type -->
+
+				<restriction base="xsd:string">
+					<enumeration value="DEFAULT-ITEM-LINK" /><!-- ae__ItemLink_Type::DEFAULT_ITEM_LINK -->
+					<!-- = 0 -->
+					<enumeration value="TWOWAY-NO-TRIGGERS" /><!-- ae__ItemLink_Type::TWOWAY_NO_TRIGGERS -->
+					<!-- = 1 -->
+					<enumeration value="ONEWAY-NO-TRIGGERS" /><!-- ae__ItemLink_Type::ONEWAY_NO_TRIGGERS -->
+					<!-- = 2 -->
+					<enumeration value="ONEWAY-CURRENT-TRIGGERS-LINKED" /><!-- ae__ItemLink_Type::ONEWAY_CURRENT_TRIGGERS_LINKED -->
+					<!-- = 3 -->
+					<enumeration value="TWOWAY-CURRENT-TRIGGERS-LINKED" /><!-- ae__ItemLink_Type::TWOWAY_CURRENT_TRIGGERS_LINKED -->
+					<!-- = 4 -->
+					<enumeration value="TWOWAY-LINKED-TRIGGERS-CURRENT" /><!-- ae__ItemLink_Type::TWOWAY_LINKED_TRIGGERS_CURRENT -->
+					<!-- = 5 -->
+					<enumeration value="TWOWAY-BOTH-TRIGGERS" /><!-- ae__ItemLink_Type::TWOWAY_BOTH_TRIGGERS -->
+					<!-- = 6 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Solution-Type"><!-- ae__Solution_Type -->
+
+				<restriction base="xsd:string">
+					<enumeration value="TEAMTRACK-SOLUTION" /><!-- ae__Solution_Type::TEAMTRACK_SOLUTION -->
+					<!-- = 0 -->
+					<enumeration value="USER-SOLUTION" /><!-- ae__Solution_Type::USER_SOLUTION -->
+					<!-- = 1 -->
+					<enumeration value="THIRDPARTY-SOLUTION" /><!-- ae__Solution_Type::THIRDPARTY_SOLUTION -->
+					<!-- = 2 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Table-Type"><!-- ae__Table_Type -->
+
+				<restriction base="xsd:string">
+					<enumeration value="NOT-SPECIFIED" /><!-- ae__Table_Type::NOT_SPECIFIED -->
+					<!-- = 0 -->
+					<enumeration value="SYSTEM-TABLE" /><!-- ae__Table_Type::SYSTEM_TABLE -->
+					<!-- = 1 -->
+					<enumeration value="PRIMARY-TABLE" /><!-- ae__Table_Type::PRIMARY_TABLE -->
+					<!-- = 2 -->
+					<enumeration value="AUXILIARY-TABLE" /><!-- ae__Table_Type::AUXILIARY_TABLE -->
+					<!-- = 3 -->
+					<enumeration value="SYSTEM-AUXILIARY-TABLE" /><!-- ae__Table_Type::SYSTEM_AUXILIARY_TABLE -->
+					<!-- = 4 -->
+					<enumeration value="ARCHIVE-TABLE" /><!-- ae__Table_Type::ARCHIVE_TABLE -->
+					<!-- = 5 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Field-Type"><!-- ae__Field_Type -->
+
+				<restriction base="xsd:string">
+					<enumeration value="FLDTYPE-UNKNOWN" /><!-- ae__Field_Type::FLDTYPE_UNKNOWN -->
+					<!-- = 0 -->
+					<enumeration value="FLDTYPE-NUMERIC" /><!-- ae__Field_Type::FLDTYPE_NUMERIC -->
+					<!-- = 1 -->
+					<enumeration value="FLDTYPE-TEXT" /><!-- ae__Field_Type::FLDTYPE_TEXT -->
+					<!-- = 2 -->
+					<enumeration value="FLDTYPE-DATETIME" /><!-- ae__Field_Type::FLDTYPE_DATETIME -->
+					<!-- = 3 -->
+					<enumeration value="FLDTYPE-SELECTION" /><!-- ae__Field_Type::FLDTYPE_SELECTION -->
+					<!-- = 4 -->
+					<enumeration value="FLDTYPE-BINARY" /><!-- ae__Field_Type::FLDTYPE_BINARY -->
+					<!-- = 5 -->
+					<enumeration value="FLDTYPE-STATE" /><!-- ae__Field_Type::FLDTYPE_STATE -->
+					<!-- = 6 -->
+					<enumeration value="FLDTYPE-USER" /><!-- ae__Field_Type::FLDTYPE_USER -->
+					<!-- = 7 -->
+					<enumeration value="FLDTYPE-PROJECT" /><!-- ae__Field_Type::FLDTYPE_PROJECT -->
+					<!-- = 8 -->
+					<enumeration value="FLDTYPE-SUMMATION" /><!-- ae__Field_Type::FLDTYPE_SUMMATION -->
+					<!-- = 9 -->
+					<enumeration value="FLDTYPE-MULTIPLE-SELECTION" /><!-- ae__Field_Type::FLDTYPE_MULTIPLE_SELECTION -->
+					<!-- = 10 -->
+					<enumeration value="FLDTYPE-CONTACT" /><!-- ae__Field_Type::FLDTYPE_CONTACT -->
+					<!-- = 11 -->
+					<enumeration value="FLDTYPE-INCIDENT" /><!-- ae__Field_Type::FLDTYPE_INCIDENT -->
+					<!-- = 12 -->
+					<enumeration value="FLDTYPE-FOLDER" /><!-- ae__Field_Type::FLDTYPE_FOLDER -->
+					<!-- = 13 -->
+					<enumeration value="FLDTYPE-RELATIONAL" /><!-- ae__Field_Type::FLDTYPE_RELATIONAL -->
+					<!-- = 14 -->
+					<enumeration value="FLDTYPE-SUBRELATIONAL" /><!-- ae__Field_Type::FLDTYPE_SUBRELATIONAL -->
+					<!-- = 15 -->
+					<enumeration value="FLDTYPE-SYSTEM" /><!-- ae__Field_Type::FLDTYPE_SYSTEM -->
+					<!-- = 16 -->
+					<enumeration value="FLDTYPE-MULTIPLE-RELATIONAL" /><!-- ae__Field_Type::FLDTYPE_MULTIPLE_RELATIONAL -->
+					<!-- = 17 -->
+					<enumeration value="FLDTYPE-MULTIPLE-GROUP" /><!-- ae__Field_Type::FLDTYPE_MULTIPLE_GROUP -->
+					<!-- = 18 -->
+					<enumeration value="FLDTYPE-MULTIPLE-USERGROUP" /><!-- ae__Field_Type::FLDTYPE_MULTIPLE_USERGROUP -->
+					<!-- = 19 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="ReportType"><!-- ae__ReportType -->
+
+				<restriction base="xsd:string">
+					<enumeration value="LISTING" /><!-- ae__ReportType::LISTING -->
+					<!-- = 1 -->
+					<enumeration value="ALLTYPES" /><!-- ae__ReportType::ALLTYPES -->
+					<!-- = 2 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="ReportCategory"><!-- ae__ReportCategory -->
+
+				<restriction base="xsd:string">
+					<enumeration value="ALL" /><!-- ae__ReportCategory::ALL -->
+					<!-- = 1 -->
+					<enumeration value="APPLICATION" /><!-- ae__ReportCategory::APPLICATION -->
+					<!-- = 2 -->
+					<enumeration value="BUILTIN" /><!-- ae__ReportCategory::BUILTIN -->
+					<!-- = 3 -->
+					<enumeration value="MY" /><!-- ae__ReportCategory::MY -->
+					<!-- = 4 -->
+					<enumeration value="QUICKLINKS" /><!-- ae__ReportCategory::QUICKLINKS -->
+					<!-- = 5 -->
+					<enumeration value="USERREPORTS" /><!-- ae__ReportCategory::USERREPORTS -->
+					<!-- = 6 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="ReportAccessLevel"><!-- ae__ReportAccessLevel -->
+
+				<restriction base="xsd:string">
+					<enumeration value="PRIVATE" /><!-- ae__ReportAccessLevel::PRIVATE -->
+					<!-- = 1 -->
+					<enumeration value="GUEST" /><!-- ae__ReportAccessLevel::GUEST -->
+					<!-- = 2 -->
+					<enumeration value="USER" /><!-- ae__ReportAccessLevel::USER -->
+					<!-- = 3 -->
+					<enumeration value="MANAGER" /><!-- ae__ReportAccessLevel::MANAGER -->
+					<!-- = 4 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="GetTransitionOptions"><!-- ae__GetTransitionOptions -->
+
+				<restriction base="xsd:string">
+					<enumeration value="TRANSITIONS-ALL" /><!-- ae__GetTransitionOptions::TRANSITIONS_ALL -->
+					<!-- = 0 -->
+					<enumeration value="TRANSITIONS-QUICK" /><!-- ae__GetTransitionOptions::TRANSITIONS_QUICK -->
+					<!-- = 1 -->
+				</restriction>
+			</simpleType>
+			<simpleType name="Transition-Type"><!-- ae__Transition_Type -->
+
+				<restriction base="xsd:string">
+					<enumeration value="TRANSITION-REGULAR" /><!-- ae__Transition_Type::TRANSITION_REGULAR -->
+					<!-- = 0 -->
+					<enumeration value="TRANSITION-COPY" /><!-- ae__Transition_Type::TRANSITION_COPY -->
+					<!-- = 1 -->
+					<enumeration value="TRANSITION-POST" /><!-- ae__Transition_Type::TRANSITION_POST -->
+					<!-- = 2 -->
+					<enumeration value="TRANSITION-SUBMITPROBLEM" /><!-- ae__Transition_Type::TRANSITION_SUBMITPROBLEM -->
+					<!-- = 3 -->
+					<enumeration value="TRANSITION-MOBILE" /><!-- ae__Transition_Type::TRANSITION_MOBILE -->
+					<!-- = 4 -->
+					<enumeration value="TRANSITION-SUBTASK" /><!-- ae__Transition_Type::TRANSITION_SUBTASK -->
+					<!-- = 5 -->
+					<enumeration value="TRANSITION-UPDATE" /><!-- ae__Transition_Type::TRANSITION_UPDATE -->
+					<!-- = 6 -->
+					<enumeration value="TRANSITION-DELETE" /><!-- ae__Transition_Type::TRANSITION_DELETE -->
+					<!-- = 7 -->
+					<enumeration value="TRANSITION-EXTERNALPOST" /><!-- ae__Transition_Type::TRANSITION_EXTERNALPOST -->
+					<!-- = 8 -->
+				</restriction>
+			</simpleType>
+			<complexType name="ExtraValue"><!-- ae__ExtraValue -->
+
+				<sequence>
+					<element name="name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ExtraValue::name -->
+					<element name="value" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ExtraValue::value -->
+				</sequence>
+			</complexType>
+			<complexType name="ExtendedData"><!-- ae__ExtendedData -->
+
+				<sequence>
+					<element name="data" type="ae:ExtraValue" minOccurs="0" maxOccurs="unbounded" /><!-- ae__ExtendedData::data -->
+				</sequence>
+			</complexType>
+			<complexType name="Auth"><!-- ae__Auth -->
+
+				<sequence>
+					<element name="userId" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Auth::userId -->
+					<element name="password" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Auth::password -->
+					<element name="hostname" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Auth::hostname -->
+					<element name="loginAsUserId" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Auth::loginAsUserId -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Auth::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="Identifier"><!-- ae__Identifier -->
+
+				<sequence>
+					<element name="displayName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Identifier::displayName -->
+					<element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__Identifier::id -->
+					<element name="uuid" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Identifier::uuid -->
+				</sequence>
+			</complexType>
+			<complexType name="ItemIdentifier"><!-- ae__ItemIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="tableId" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__ItemIdentifier::tableId -->
+							<element name="tableIdItemId" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ItemIdentifier::tableIdItemId -->
+							<element name="issueId" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ItemIdentifier::issueId -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="StateIdentifier"><!-- ae__StateIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="internalName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__StateIdentifier::internalName -->
+							<element name="isClosed" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__StateIdentifier::isClosed -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="TransitionIdentifier"><!-- ae__TransitionIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="internalName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionIdentifier::internalName -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ProjectIdentifier"><!-- ae__ProjectIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="fullyQualifiedName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ProjectIdentifier::fullyQualifiedName -->
+							<element name="internalName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ProjectIdentifier::internalName -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="TableIdentifier"><!-- ae__TableIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="dbName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TableIdentifier::dbName -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="FieldIdentifier"><!-- ae__FieldIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="dbName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FieldIdentifier::dbName -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="UserIdentifier"><!-- ae__UserIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="loginId" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserIdentifier::loginId -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="GroupIdentifier"><!-- ae__GroupIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="SolutionIdentifier"><!-- ae__SolutionIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="uniqueName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SolutionIdentifier::uniqueName -->
+							<element name="tabName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SolutionIdentifier::tabName -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ApplicationIdentifier"><!-- ae__ApplicationIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="WorkflowIdentifier"><!-- ae__WorkflowIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ReportIdentifier"><!-- ae__ReportIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ContactIdentifier"><!-- ae__ContactIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="RoleIdentifier"><!-- ae__RoleIdentifier -->
+
+				<complexContent>
+					<extension base="ae:Identifier">
+						<sequence>
+							<element name="projectId" type="ae:ProjectIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__RoleIdentifier::projectId -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="PrivilegeIdentifier"><!-- ae__PrivilegeIdentifier -->
+
+				<sequence>
+					<element name="name" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeIdentifier::name -->
+					<element name="type" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeIdentifier::type -->
+				</sequence>
+			</complexType>
+			<complexType name="Options"><!-- ae__Options -->
+
+				<sequence>
+					<element name="extraOption" type="ae:ExtraValue" minOccurs="0" maxOccurs="unbounded" /><!-- ae__Options::extraOption -->
+				</sequence>
+			</complexType>
+			<complexType name="MultipleOptions"><!-- ae__MultipleOptions -->
+
+				<complexContent>
+					<extension base="ae:Options">
+						<sequence>
+							<element name="multiOption" type="ae:MultipleOption" minOccurs="1" maxOccurs="1" /><!-- ae__MultipleOptions::multiOption -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ResponseItemOptions"><!-- ae__ResponseItemOptions -->
+
+				<complexContent>
+					<extension base="ae:Options">
+						<sequence>
+							<element name="sections" type="ae:SectionsOption" minOccurs="1" maxOccurs="1" /><!-- ae__ResponseItemOptions::sections -->
+							<element name="specifiedSections" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ResponseItemOptions::specifiedSections -->
+							<element name="limitedField" type="ae:FieldIdentifier" minOccurs="0" maxOccurs="unbounded" /><!-- ae__ResponseItemOptions::limitedField -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="MultipleResponseItemOptions"><!-- ae__MultipleResponseItemOptions -->
+
+				<complexContent>
+					<extension base="ae:ResponseItemOptions">
+						<sequence>
+							<element name="multiOption" type="ae:MultipleOption" minOccurs="0" maxOccurs="1" /><!-- ae__MultipleResponseItemOptions::multiOption -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="UserSingleResponseOptions"><!-- ae__UserSingleResponseOptions -->
+
+				<complexContent>
+					<extension base="ae:Options">
+						<sequence>
+							<element name="sections" type="ae:SectionsOption" minOccurs="1" maxOccurs="1" /><!-- ae__UserSingleResponseOptions::sections -->
+							<element name="specifiedSections" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserSingleResponseOptions::specifiedSections -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="UserResponseOptions"><!-- ae__UserResponseOptions -->
+
+				<complexContent>
+					<extension base="ae:UserSingleResponseOptions">
+						<sequence>
+							<element name="multiOption" type="ae:MultipleOption" minOccurs="0" maxOccurs="1" /><!-- ae__UserResponseOptions::multiOption -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="Status"><!-- ae__Status -->
+
+				<sequence>
+					<element name="status" type="ae:StatusEnum" minOccurs="1" maxOccurs="1" /><!-- ae__Status::status -->
+					<element name="code" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Status::code -->
+					<element name="message" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Status::message -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Status::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="FieldValue"><!-- ae__FieldValue -->
+
+				<sequence>
+					<element name="displayValue" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FieldValue::displayValue -->
+					<element name="internalName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FieldValue::internalName -->
+					<element name="internalValue" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FieldValue::internalValue -->
+					<element name="uuid" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FieldValue::uuid -->
+				</sequence>
+			</complexType>
+			<complexType name="FileAttachment"><!-- ae__FileAttachment -->
+
+				<sequence>
+					<element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__FileAttachment::id -->
+					<element name="name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FileAttachment::name -->
+					<element name="fileName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FileAttachment::fileName -->
+					<element name="showAsImage" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__FileAttachment::showAsImage -->
+					<element name="modificationDateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__FileAttachment::modificationDateTime -->
+					<element name="url" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FileAttachment::url -->
+					<element name="accessType" type="ae:Attachment-Access-Type" minOccurs="1" maxOccurs="1" default="ATTACHACCESS-DEFAULT" /><!-- ae__FileAttachment::accessType -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FileAttachment::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="FileBufferBase64"><!-- ae__FileBufferBase64 -->
+
+				<sequence>
+					<element name="data" type="xsd:base64Binary" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__FileBufferBase64::data -->
+				</sequence>
+			</complexType>
+			<complexType name="FileAttachmentContents"><!-- ae__FileAttachmentContents -->
+
+				<complexContent>
+					<extension base="ae:FileAttachment">
+						<sequence>
+							<element name="contentsBase64" type="ae:FileBufferBase64" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FileAttachmentContents::contentsBase64 -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="FileContents"><!-- ae__FileContents -->
+
+				<sequence>
+					<element name="contentsBase64" type="ae:FileBufferBase64" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FileContents::contentsBase64 -->
+				</sequence>
+			</complexType>
+			<complexType name="UserSolutionData"><!-- ae__UserSolutionData -->
+
+				<sequence>
+					<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserSolutionData::solution -->
+					<element name="homeReport" type="ae:ReportIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserSolutionData::homeReport -->
+					<element name="preferredProject" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="unbounded" /><!-- ae__UserSolutionData::preferredProject -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserSolutionData::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="UserInfo"><!-- ae__UserInfo -->
+
+				<sequence>
+					<element name="id" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::id -->
+					<element name="accessType" type="ae:AccessType" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::accessType -->
+					<element name="email" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::email -->
+					<element name="emailCC" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::emailCC -->
+					<element name="timezone" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::timezone -->
+					<element name="offsetFromGMT" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::offsetFromGMT -->
+					<element name="dstSavings" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::dstSavings -->
+					<element name="datePreference" type="ae:DatePreference" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::datePreference -->
+					<element name="timePreference" type="ae:TimePreference" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::timePreference -->
+					<element name="namespaceName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::namespaceName -->
+					<element name="phoneNumber" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::phoneNumber -->
+					<element name="locale" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::locale -->
+					<element name="isDeleted" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__UserInfo::isDeleted -->
+					<element name="contact" type="ae:ContactIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::contact -->
+					<element name="maxNotes" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::maxNotes -->
+					<element name="maxChangeHistory" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::maxChangeHistory -->
+					<element name="maxItemsPerPage" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::maxItemsPerPage -->
+					<element name="fieldsMask" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::fieldsMask -->
+					<element name="notesMask" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::notesMask -->
+					<element name="changeHistoryMask" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::changeHistoryMask -->
+					<element name="browserMask" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__UserInfo::browserMask -->
+					<element name="group" type="ae:GroupIdentifier" minOccurs="0" maxOccurs="unbounded" /><!-- ae__UserInfo::group -->
+					<element name="preferredSolution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::preferredSolution -->
+					<element name="solutionData" type="ae:UserSolutionData" minOccurs="0" maxOccurs="unbounded" /><!-- ae__UserInfo::solutionData -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserInfo::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="UserHolder"><!-- ae__UserHolder -->
+
+				<sequence>
+					<element name="user" type="ae:UserInfo" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserHolder::user -->
+					<element name="status" type="ae:Status" minOccurs="0" maxOccurs="unbounded" /><!-- ae__UserHolder::status -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UserHolder::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="GroupInfo"><!-- ae__GroupInfo -->
+
+				<sequence>
+					<element name="id" type="ae:GroupIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GroupInfo::id -->
+					<element name="accessType" type="ae:AccessType" minOccurs="1" maxOccurs="1" /><!-- ae__GroupInfo::accessType -->
+					<element name="memo" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GroupInfo::memo -->
+					<element name="isDeleted" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__GroupInfo::isDeleted -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GroupInfo::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="GroupHolder"><!-- ae__GroupHolder -->
+
+				<sequence>
+					<element name="group" type="ae:GroupInfo" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GroupHolder::group -->
+					<element name="status" type="ae:Status" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GroupHolder::status -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GroupHolder::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="RoleInfo"><!-- ae__RoleInfo -->
+
+				<sequence>
+					<element name="id" type="ae:RoleIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__RoleInfo::id -->
+					<element name="access" type="ae:GrantState" minOccurs="1" maxOccurs="1" /><!-- ae__RoleInfo::access -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RoleInfo::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="PrivilegeInfo"><!-- ae__PrivilegeInfo -->
+
+				<sequence>
+					<element name="privilegeId" type="ae:PrivilegeIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeInfo::privilegeId -->
+					<element name="access" type="ae:GrantState" minOccurs="1" maxOccurs="1" /><!-- ae__PrivilegeInfo::access -->
+					<element name="objectId" type="ae:Identifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeInfo::objectId -->
+					<element name="projectId" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeInfo::projectId -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeInfo::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="RoleHolder"><!-- ae__RoleHolder -->
+
+				<sequence>
+					<element name="role" type="ae:RoleInfo" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__RoleHolder::role -->
+					<element name="status" type="ae:Status" minOccurs="0" maxOccurs="unbounded" /><!-- ae__RoleHolder::status -->
+				</sequence>
+			</complexType>
+			<complexType name="PrivilegeHolder"><!-- ae__PrivilegeHolder -->
+
+				<sequence>
+					<element name="privilege" type="ae:PrivilegeInfo" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__PrivilegeHolder::privilege -->
+					<element name="status" type="ae:Status" minOccurs="0" maxOccurs="unbounded" /><!-- ae__PrivilegeHolder::status -->
+				</sequence>
+			</complexType>
+			<complexType name="NameValue"><!-- ae__NameValue -->
+
+				<sequence>
+					<element name="id" type="ae:FieldIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NameValue::id -->
+					<element name="setValueBy" type="ae:Set-Value-By" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NameValue::setValueBy -->
+					<element name="setValueMethod" type="ae:Set-Value-Method" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NameValue::setValueMethod -->
+					<element name="value" type="ae:FieldValue" minOccurs="1" maxOccurs="unbounded" /><!-- ae__NameValue::value -->
+				</sequence>
+			</complexType>
+			<complexType name="Note"><!-- ae__Note -->
+
+				<sequence>
+					<element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__Note::id -->
+					<element name="title" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Note::title -->
+					<element name="note" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Note::note -->
+					<element name="author" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Note::author -->
+					<element name="modificationDateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__Note::modificationDateTime -->
+					<element name="accessType" type="ae:Attachment-Access-Type" minOccurs="1" maxOccurs="1" default="ATTACHACCESS-DEFAULT" /><!-- ae__Note::accessType -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Note::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="ItemLink"><!-- ae__ItemLink -->
+
+				<sequence>
+					<element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__ItemLink::id -->
+					<element name="itemID" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ItemLink::itemID -->
+					<element name="linkType" type="ae:ItemLink-Type" minOccurs="1" maxOccurs="1" default="DEFAULT-ITEM-LINK" /><!-- ae__ItemLink::linkType -->
+					<element name="modificationDateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__ItemLink::modificationDateTime -->
+					<element name="accessType" type="ae:Attachment-Access-Type" minOccurs="1" maxOccurs="1" default="ATTACHACCESS-DEFAULT" /><!-- ae__ItemLink::accessType -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ItemLink::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="URLAttachment"><!-- ae__URLAttachment -->
+
+				<sequence>
+					<element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__URLAttachment::id -->
+					<element name="name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__URLAttachment::name -->
+					<element name="url" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__URLAttachment::url -->
+					<element name="showAsImage" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__URLAttachment::showAsImage -->
+					<element name="modificationDateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__URLAttachment::modificationDateTime -->
+					<element name="accessType" type="ae:Attachment-Access-Type" minOccurs="1" maxOccurs="1" default="ATTACHACCESS-DEFAULT" /><!-- ae__URLAttachment::accessType -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__URLAttachment::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="SubTasks"><!-- ae__SubTasks -->
+
+				<sequence>
+					<element name="parentItemId" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SubTasks::parentItemId -->
+					<element name="subtask" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="unbounded" /><!-- ae__SubTasks::subtask -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SubTasks::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="TTItem"><!-- ae__TTItem -->
+
+				<sequence>
+					<element name="id" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::id -->
+					<element name="itemType" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::itemType -->
+					<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::project -->
+					<element name="title" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::title -->
+					<element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::description -->
+					<element name="createdBy" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::createdBy -->
+					<element name="createDate" type="xsd:dateTime" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::createDate -->
+					<element name="modifiedBy" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::modifiedBy -->
+					<element name="modifiedDate" type="xsd:dateTime" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::modifiedDate -->
+					<element name="activeInactive" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::activeInactive -->
+					<element name="state" type="ae:StateIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::state -->
+					<element name="owner" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::owner -->
+					<element name="url" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::url -->
+					<element name="extendedField" type="ae:NameValue" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItem::extendedField -->
+					<element name="note" type="ae:Note" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItem::note -->
+					<element name="itemLink" type="ae:ItemLink" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItem::itemLink -->
+					<element name="urlAttachment" type="ae:URLAttachment" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItem::urlAttachment -->
+					<element name="fileAttachment" type="ae:FileAttachment" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItem::fileAttachment -->
+					<element name="subtasks" type="ae:SubTasks" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::subtasks -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItem::extendedData -->
+					<any processContents="lax" minOccurs="0" maxOccurs="unbounded" namespace="##other" /><!-- member __any -->
+				</sequence>
+			</complexType>
+			<complexType name="TTItemList"><!-- ae__TTItemList -->
+
+				<sequence>
+					<element name="item" type="ae:TTItem" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItemList::item -->
+					<element name="totalCount" type="xsd:integer" minOccurs="1" maxOccurs="1" /><!-- ae__TTItemList::totalCount -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItemList::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="TTItemHolder"><!-- ae__TTItemHolder -->
+
+				<sequence>
+					<element name="item" type="ae:TTItem" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItemHolder::item -->
+					<element name="status" type="ae:Status" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TTItemHolder::status -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TTItemHolder::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="ApplicationData"><!-- ae__ApplicationData -->
+
+				<sequence>
+					<element name="application" type="ae:ApplicationIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ApplicationData::application -->
+					<element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ApplicationData::description -->
+					<element name="appDefUUID" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ApplicationData::appDefUUID -->
+					<element name="revision" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ApplicationData::revision -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ApplicationData::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="SolutionData"><!-- ae__SolutionData -->
+
+				<sequence>
+					<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SolutionData::solution -->
+					<element name="type" type="ae:Solution-Type" minOccurs="1" maxOccurs="1" /><!-- ae__SolutionData::type -->
+					<element name="prefix" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SolutionData::prefix -->
+					<element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SolutionData::description -->
+					<element name="processAppUUID" type="xsd:string" minOccurs="0" maxOccurs="unbounded" /><!-- ae__SolutionData::processAppUUID -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__SolutionData::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="Field"><!-- ae__Field -->
+
+				<sequence>
+					<element name="field" type="ae:FieldIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Field::field -->
+					<element name="fieldType" type="ae:Field-Type" minOccurs="1" maxOccurs="1" /><!-- ae__Field::fieldType -->
+					<element name="attribute" type="xsd:integer" minOccurs="1" maxOccurs="1" /><!-- ae__Field::attribute -->
+					<element name="properties" type="xsd:integer" minOccurs="1" maxOccurs="1" /><!-- ae__Field::properties -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Field::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="FieldWithValue"><!-- ae__FieldWithValue -->
+
+				<complexContent>
+					<extension base="ae:Field">
+						<sequence>
+							<element name="value" type="ae:FieldValue" minOccurs="1" maxOccurs="unbounded" /><!-- ae__FieldWithValue::value -->
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="TableData"><!-- ae__TableData -->
+
+				<sequence>
+					<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TableData::table -->
+					<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TableData::solution -->
+					<element name="type" type="ae:Table-Type" minOccurs="1" maxOccurs="1" /><!-- ae__TableData::type -->
+					<element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TableData::description -->
+					<element name="field" type="ae:Field" minOccurs="0" maxOccurs="unbounded" /><!-- ae__TableData::field -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TableData::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="QueryRange"><!-- ae__QueryRange -->
+
+				<sequence>
+					<element name="startIndex" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__QueryRange::startIndex -->
+					<element name="fetchSize" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__QueryRange::fetchSize -->
+					<element name="totalCount" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__QueryRange::totalCount -->
+				</sequence>
+			</complexType>
+			<complexType name="ReportsFilter"><!-- ae__ReportsFilter -->
+
+				<sequence>
+					<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::solution -->
+					<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::project -->
+					<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::table -->
+					<element name="author" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::author -->
+					<element name="reportType" type="ae:ReportType" minOccurs="0" maxOccurs="1" default="LISTING" /><!-- ae__ReportsFilter::reportType -->
+					<element name="reportCategory" type="ae:ReportCategory" minOccurs="0" maxOccurs="1" default="ALL" /><!-- ae__ReportsFilter::reportCategory -->
+					<element name="reportAccessLevel" type="ae:ReportAccessLevel" minOccurs="0" maxOccurs="1" /><!-- ae__ReportsFilter::reportAccessLevel -->
+					<element name="report" type="ae:ReportIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::report -->
+					<element name="searchByName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::searchByName -->
+					<element name="includeSubProjects" type="xsd:boolean" minOccurs="0" maxOccurs="1" default="false" /><!-- ae__ReportsFilter::includeSubProjects -->
+					<element name="createdDateFrom" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__ReportsFilter::createdDateFrom -->
+					<element name="createdDateTo" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__ReportsFilter::createdDateTo -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportsFilter::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="ReportInfo"><!-- ae__ReportInfo -->
+
+				<sequence>
+					<element name="report" type="ae:ReportIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::report -->
+					<element name="reportURL" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::reportURL -->
+					<element name="reportType" type="ae:ReportType" minOccurs="1" maxOccurs="1" default="LISTING" /><!-- ae__ReportInfo::reportType -->
+					<element name="reportCategory" type="ae:ReportCategory" minOccurs="1" maxOccurs="1" /><!-- ae__ReportInfo::reportCategory -->
+					<element name="reportAccessLevel" type="ae:ReportAccessLevel" minOccurs="1" maxOccurs="1" /><!-- ae__ReportInfo::reportAccessLevel -->
+					<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::solution -->
+					<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::table -->
+					<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::project -->
+					<element name="createdBy" type="ae:UserIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::createdBy -->
+					<element name="createDate" type="xsd:dateTime" minOccurs="1" maxOccurs="1" /><!-- ae__ReportInfo::createDate -->
+					<element name="modifiedBy" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::modifiedBy -->
+					<element name="modifiedDate" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__ReportInfo::modifiedDate -->
+					<element name="execDate" type="xsd:dateTime" minOccurs="0" maxOccurs="1" /><!-- ae__ReportInfo::execDate -->
+					<element name="isQueryAtRuntime" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__ReportInfo::isQueryAtRuntime -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportInfo::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="ReportData"><!-- ae__ReportData -->
+
+				<sequence>
+					<element name="id" type="xsd:long" minOccurs="0" maxOccurs="1" /><!-- ae__ReportData::id -->
+					<element name="reportReference" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportData::reportReference -->
+				</sequence>
+			</complexType>
+			<complexType name="OrderBy"><!-- ae__OrderBy -->
+
+				<sequence>
+					<element name="firstFieldName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__OrderBy::firstFieldName -->
+					<element name="secondFieldName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__OrderBy::secondFieldName -->
+				</sequence>
+			</complexType>
+			<complexType name="ReportDefinition"><!-- ae__ReportDefinition -->
+
+				<sequence>
+					<element name="orderBy" type="ae:OrderBy" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportDefinition::orderBy -->
+					<element name="column" type="ae:Field" minOccurs="0" maxOccurs="unbounded" /><!-- ae__ReportDefinition::column -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportDefinition::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="ReportResult"><!-- ae__ReportResult -->
+
+				<sequence>
+					<element name="itemURL" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportResult::itemURL -->
+					<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportResult::item -->
+					<element name="fieldValue" type="ae:FieldWithValue" minOccurs="0" maxOccurs="unbounded" /><!-- ae__ReportResult::fieldValue -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ReportResult::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="GetReportsResult"><!-- ae__GetReportsResult -->
+
+				<sequence>
+					<element name="queryRange" type="ae:QueryRange" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__GetReportsResult::queryRange -->
+					<element name="report" type="ae:ReportInfo" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetReportsResult::report -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetReportsResult::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="RunReportResult"><!-- ae__RunReportResult -->
+
+				<sequence>
+					<element name="queryRange" type="ae:QueryRange" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__RunReportResult::queryRange -->
+					<element name="reportInfo" type="ae:ReportInfo" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__RunReportResult::reportInfo -->
+					<element name="reportDefinition" type="ae:ReportDefinition" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__RunReportResult::reportDefinition -->
+					<element name="result" type="ae:ReportResult" minOccurs="0" maxOccurs="unbounded" /><!-- ae__RunReportResult::result -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportResult::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="RunReportXmlResult"><!-- ae__RunReportXmlResult -->
+
+				<sequence>
+					<element name="result" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportXmlResult::result -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportXmlResult::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="ProjectData"><!-- ae__ProjectData -->
+
+				<sequence>
+					<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ProjectData::project -->
+					<element name="description" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ProjectData::description -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__ProjectData::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="Transition"><!-- ae__Transition -->
+
+				<sequence>
+					<element name="transition" type="ae:TransitionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Transition::transition -->
+					<element name="fromState" type="ae:StateIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Transition::fromState -->
+					<element name="toState" type="ae:StateIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Transition::toState -->
+					<element name="type" type="ae:Transition-Type" minOccurs="1" maxOccurs="1" /><!-- ae__Transition::type -->
+					<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Transition::project -->
+					<element name="transitionAttribute" type="xsd:string" minOccurs="0" maxOccurs="unbounded" /><!-- ae__Transition::transitionAttribute -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Transition::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="NoteLoggerInfo"><!-- ae__NoteLoggerInfo -->
+
+				<sequence>
+					<element name="emailAddress" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NoteLoggerInfo::emailAddress -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NoteLoggerInfo::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="StateChangeHistory"><!-- ae__StateChangeHistory -->
+
+				<sequence>
+					<element name="newState" type="ae:StateIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__StateChangeHistory::newState -->
+					<element name="transition" type="ae:TransitionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__StateChangeHistory::transition -->
+					<element name="time" type="xsd:dateTime" minOccurs="1" maxOccurs="1" /><!-- ae__StateChangeHistory::time -->
+					<element name="user" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__StateChangeHistory::user -->
+					<element name="owner" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__StateChangeHistory::owner -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__StateChangeHistory::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="NoteAttachmentContents"><!-- ae__NoteAttachmentContents -->
+
+				<sequence>
+					<element name="time" type="xsd:integer" minOccurs="1" maxOccurs="1" /><!-- ae__NoteAttachmentContents::time -->
+					<element name="title" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NoteAttachmentContents::title -->
+					<element name="body" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NoteAttachmentContents::body -->
+					<element name="accessType" type="ae:Attachment-Access-Type" minOccurs="1" maxOccurs="1" default="ATTACHACCESS-DEFAULT" /><!-- ae__NoteAttachmentContents::accessType -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__NoteAttachmentContents::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="GetStateChangeHistoryResult"><!-- ae__GetStateChangeHistoryResult -->
+
+				<sequence>
+					<element name="queryRange" type="ae:QueryRange" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistoryResult::queryRange -->
+					<element name="stateChangeHistory" type="ae:StateChangeHistory" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetStateChangeHistoryResult::stateChangeHistory -->
+					<element name="extendedData" type="ae:ExtendedData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistoryResult::extendedData -->
+				</sequence>
+			</complexType>
+			<complexType name="FailedItem"><!-- ae__FailedItem -->
+
+				<sequence>
+					<element name="itemId" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FailedItem::itemId -->
+					<element name="status" type="ae:Status" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__FailedItem::status -->
+				</sequence>
+			</complexType>
+			<complexType name="FailedItemResponse"><!-- ae__FailedItemResponse -->
+
+				<sequence>
+					<element name="return" type="ae:FailedItem" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__FailedItemResponse::_return -->
+				</sequence>
+			</complexType>
+			<complexType name="PauseItemsResponse"><!-- ae__PauseItemsResponse -->
+
+				<sequence>
+					<element name="return" type="ae:FailedItem" minOccurs="1" maxOccurs="unbounded" /><!-- ae__PauseItemsResponse::_return -->
+				</sequence>
+			</complexType>
+			<!-- operation request element -->
+			<element name="Logout">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Logout::auth -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__Logout::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="LogoutResponse">
+				<complexType>
+					<sequence>
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetVersion">
+				<complexType>
+					<sequence>
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetVersionResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetVersionResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetApplications">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetApplications::auth -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetApplications::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetApplicationsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:ApplicationData" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetApplicationsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetSolutions">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetSolutions::auth -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetSolutions::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetSolutionsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:SolutionData" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetSolutionsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetTables">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetTables::auth -->
+						<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetTables::solution -->
+						<element name="tableType" type="ae:Table-Type" minOccurs="1" maxOccurs="1" /><!-- ae__GetTables::tableType -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetTables::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetTablesResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TableData" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetTablesResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetReports">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetReports::auth -->
+						<element name="queryRange" type="ae:QueryRange" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetReports::queryRange -->
+						<element name="reportsFilter" type="ae:ReportsFilter" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetReports::reportsFilter -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetReports::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetReportsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:GetReportsResult" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__GetReportsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="RunReport">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::auth -->
+						<element name="queryRange" type="ae:QueryRange" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::queryRange -->
+						<element name="report" type="ae:ReportIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::report -->
+						<element name="solution" type="ae:SolutionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::solution -->
+						<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::project -->
+						<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::table -->
+						<element name="reportCategory" type="ae:ReportCategory" minOccurs="0" maxOccurs="1" /><!-- ae__RunReport::reportCategory -->
+						<element name="reportAccessLevel" type="ae:ReportAccessLevel" minOccurs="0" maxOccurs="1" /><!-- ae__RunReport::reportAccessLevel -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReport::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="RunReportResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:RunReportResult" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="RunReportXml">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportXml::auth -->
+						<element name="report" type="ae:ReportData" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportXml::report -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportXml::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="RunReportXmlResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:RunReportXmlResult" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__RunReportXmlResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetSubmitProjects">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetSubmitProjects::auth -->
+						<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetSubmitProjects::table -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetSubmitProjects::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetSubmitProjectsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:ProjectData" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetSubmitProjectsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="CreatePrimaryItem">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItem::auth -->
+						<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItem::project -->
+						<element name="parentItem" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItem::parentItem -->
+						<element name="item" type="ae:TTItem" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItem::item -->
+						<element name="submitTransition" type="ae:TransitionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItem::submitTransition -->
+						<element name="options" type="ae:ResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItem::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="CreatePrimaryItemResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItemResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="CreatePrimaryItems">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItems::auth -->
+						<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItems::project -->
+						<element name="parentItem" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItems::parentItem -->
+						<element name="item" type="ae:TTItem" minOccurs="1" maxOccurs="unbounded" /><!-- ae__CreatePrimaryItems::item -->
+						<element name="submitTransition" type="ae:TransitionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItems::submitTransition -->
+						<element name="options" type="ae:MultipleResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreatePrimaryItems::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="CreatePrimaryItemsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="1" maxOccurs="unbounded" /><!-- ae__CreatePrimaryItemsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="LinkSubtask">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__LinkSubtask::auth -->
+						<element name="parentItem" type="ae:ItemIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__LinkSubtask::parentItem -->
+						<element name="childItem" type="ae:ItemIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__LinkSubtask::childItem -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__LinkSubtask::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="LinkSubtaskResponse">
+				<complexType>
+					<sequence>
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="CreateAuxItem">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItem::auth -->
+						<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItem::table -->
+						<element name="item" type="ae:TTItem" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItem::item -->
+						<element name="options" type="ae:ResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItem::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="CreateAuxItemResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItemResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="CreateAuxItems">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItems::auth -->
+						<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItems::table -->
+						<element name="item" type="ae:TTItem" minOccurs="1" maxOccurs="unbounded" /><!-- ae__CreateAuxItems::item -->
+						<element name="options" type="ae:MultipleResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateAuxItems::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="CreateAuxItemsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="1" maxOccurs="unbounded" /><!-- ae__CreateAuxItemsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="CreateFileAttachment">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateFileAttachment::auth -->
+						<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateFileAttachment::item -->
+						<element name="attachmentContents" type="ae:FileAttachmentContents" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateFileAttachment::attachmentContents -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateFileAttachment::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="CreateFileAttachmentResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:FileAttachment" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateFileAttachmentResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="CreateNoteAttachment">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateNoteAttachment::auth -->
+						<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateNoteAttachment::item -->
+						<element name="author" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateNoteAttachment::author -->
+						<element name="noteContents" type="ae:NoteAttachmentContents" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__CreateNoteAttachment::noteContents -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="CreateNoteAttachmentResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__CreateNoteAttachmentResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetItem">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItem::auth -->
+						<element name="itemId" type="ae:ItemIdentifier" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__GetItem::itemId -->
+						<element name="options" type="ae:ResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItem::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetItemResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetItems">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItems::auth -->
+						<element name="itemId" type="ae:ItemIdentifier" minOccurs="1" maxOccurs="unbounded" /><!-- ae__GetItems::itemId -->
+						<element name="options" type="ae:MultipleResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItems::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetItemsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="1" maxOccurs="unbounded" /><!-- ae__GetItemsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetItemsByQuery">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemsByQuery::auth -->
+						<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemsByQuery::table -->
+						<element name="queryWhereClause" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemsByQuery::queryWhereClause -->
+						<element name="orderByClause" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemsByQuery::orderByClause -->
+						<element name="firstRecord" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__GetItemsByQuery::firstRecord -->
+						<element name="maxReturnSize" type="xsd:integer" minOccurs="0" maxOccurs="1" /><!-- ae__GetItemsByQuery::maxReturnSize -->
+						<element name="options" type="ae:MultipleResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemsByQuery::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetItemsByQueryResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemList" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetItemsByQueryResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetFileAttachment">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetFileAttachment::auth -->
+						<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetFileAttachment::item -->
+						<element name="attachmentID" type="xsd:integer" minOccurs="1" maxOccurs="1" /><!-- ae__GetFileAttachment::attachmentID -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetFileAttachment::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetFileAttachmentResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:FileAttachmentContents" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetFileAttachmentResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="TransitionItem">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItem::auth -->
+						<element name="item" type="ae:TTItem" minOccurs="1" maxOccurs="1" nillable="true" /><!-- ae__TransitionItem::item -->
+						<element name="transition" type="ae:TransitionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItem::transition -->
+						<element name="breakLock" type="xsd:boolean" minOccurs="1" maxOccurs="1" default="true" /><!-- ae__TransitionItem::breakLock -->
+						<element name="options" type="ae:ResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItem::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="TransitionItemResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItemResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="TransitionItems">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItems::auth -->
+						<element name="item" type="ae:TTItem" minOccurs="1" maxOccurs="unbounded" /><!-- ae__TransitionItems::item -->
+						<element name="transition" type="ae:TransitionIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItems::transition -->
+						<element name="breakLock" type="xsd:boolean" minOccurs="1" maxOccurs="1" default="true" /><!-- ae__TransitionItems::breakLock -->
+						<element name="options" type="ae:MultipleResponseItemOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__TransitionItems::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="TransitionItemsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:TTItemHolder" minOccurs="1" maxOccurs="unbounded" /><!-- ae__TransitionItemsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetAvailableTransitions">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableTransitions::auth -->
+						<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableTransitions::item -->
+						<element name="transitionOptions" type="ae:GetTransitionOptions" minOccurs="0" maxOccurs="1" /><!-- ae__GetAvailableTransitions::transitionOptions -->
+						<element name="attributeName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableTransitions::attributeName -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableTransitions::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetAvailableTransitionsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:Transition" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetAvailableTransitionsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetAvailableSubmitTransitions">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableSubmitTransitions::auth -->
+						<element name="project" type="ae:ProjectIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableSubmitTransitions::project -->
+						<element name="attributeName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableSubmitTransitions::attributeName -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetAvailableSubmitTransitions::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetAvailableSubmitTransitionsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:Transition" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetAvailableSubmitTransitionsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="UpdateFileAttachment">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UpdateFileAttachment::auth -->
+						<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UpdateFileAttachment::item -->
+						<element name="attachmentContents" type="ae:FileAttachmentContents" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UpdateFileAttachment::attachmentContents -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UpdateFileAttachment::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="UpdateFileAttachmentResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:FileAttachment" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__UpdateFileAttachmentResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="DeleteItems">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteItems::auth -->
+						<element name="itemId" type="ae:ItemIdentifier" minOccurs="1" maxOccurs="unbounded" /><!-- ae__DeleteItems::itemId -->
+						<element name="options" type="ae:MultipleOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteItems::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="DeleteItemsResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:Status" minOccurs="0" maxOccurs="unbounded" /><!-- ae__DeleteItemsResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="DeleteItemsByQuery">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteItemsByQuery::auth -->
+						<element name="table" type="ae:TableIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteItemsByQuery::table -->
+						<element name="queryWhereClause" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteItemsByQuery::queryWhereClause -->
+						<element name="options" type="ae:MultipleOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteItemsByQuery::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="DeleteItemsByQueryResponse">
+				<complexType>
+					<sequence>
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="DeleteAttachment">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteAttachment::auth -->
+						<element name="attachmentID" type="xsd:integer" minOccurs="1" maxOccurs="1" /><!-- ae__DeleteAttachment::attachmentID -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__DeleteAttachment::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="DeleteAttachmentResponse">
+				<complexType>
+					<sequence>
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetNoteLoggerInfo">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetNoteLoggerInfo::auth -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetNoteLoggerInfo::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetNoteLoggerInfoResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:NoteLoggerInfo" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetNoteLoggerInfoResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetStateChangeHistory">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistory::auth -->
+						<element name="item" type="ae:ItemIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistory::item -->
+						<element name="queryRange" type="ae:QueryRange" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistory::queryRange -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistory::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetStateChangeHistoryResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:GetStateChangeHistoryResult" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetStateChangeHistoryResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="GetUsers">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetUsers::auth -->
+						<element name="getCurrentUser" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__GetUsers::getCurrentUser -->
+						<element name="searchByName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetUsers::searchByName -->
+						<element name="user" type="ae:UserIdentifier" minOccurs="0" maxOccurs="unbounded" /><!-- ae__GetUsers::user -->
+						<element name="options" type="ae:UserResponseOptions" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__GetUsers::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="GetUsersResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="ae:UserHolder" minOccurs="1" maxOccurs="unbounded" /><!-- ae__GetUsersResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation request element -->
+			<element name="IsUserValid">
+				<complexType>
+					<sequence>
+						<element name="auth" type="ae:Auth" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__IsUserValid::auth -->
+						<element name="user" type="ae:UserIdentifier" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__IsUserValid::user -->
+						<element name="options" type="ae:Options" minOccurs="0" maxOccurs="1" nillable="true" /><!-- ae__IsUserValid::options -->
+					</sequence>
+				</complexType>
+			</element>
+			<!-- operation response element -->
+			<element name="IsUserValidResponse">
+				<complexType>
+					<sequence>
+						<element name="return" type="xsd:boolean" minOccurs="1" maxOccurs="1" /><!-- ae__IsUserValidResponse::_return -->
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+
+	</types>
+
+	<message name="Logout">
+		<part name="parameters" element="ae:Logout" /><!-- ae__Logout::ae__Logout -->
+	</message>
+
+	<message name="LogoutResponse">
+		<part name="parameters" element="ae:LogoutResponse" /><!-- ae__Logout::out -->
+	</message>
+
+	<message name="GetVersion">
+		<part name="parameters" element="ae:GetVersion" /><!-- ae__GetVersion::ae__GetVersion -->
+	</message>
+
+	<message name="GetVersionResponse">
+		<part name="parameters" element="ae:GetVersionResponse" /><!-- ae__GetVersion::response -->
+	</message>
+
+	<message name="GetApplications">
+		<part name="parameters" element="ae:GetApplications" /><!-- ae__GetApplications::ae__GetApplications -->
+	</message>
+
+	<message name="GetApplicationsResponse">
+		<part name="parameters" element="ae:GetApplicationsResponse" /><!-- ae__GetApplications::response -->
+	</message>
+
+	<message name="GetSolutions">
+		<part name="parameters" element="ae:GetSolutions" /><!-- ae__GetSolutions::ae__GetSolutions -->
+	</message>
+
+	<message name="GetSolutionsResponse">
+		<part name="parameters" element="ae:GetSolutionsResponse" /><!-- ae__GetSolutions::response -->
+	</message>
+
+	<message name="GetTables">
+		<part name="parameters" element="ae:GetTables" /><!-- ae__GetTables::ae__GetTables -->
+	</message>
+
+	<message name="GetTablesResponse">
+		<part name="parameters" element="ae:GetTablesResponse" /><!-- ae__GetTables::response -->
+	</message>
+
+	<message name="GetReports">
+		<part name="parameters" element="ae:GetReports" /><!-- ae__GetReports::ae__GetReports -->
+	</message>
+
+	<message name="GetReportsResponse">
+		<part name="parameters" element="ae:GetReportsResponse" /><!-- ae__GetReports::response -->
+	</message>
+
+	<message name="RunReport">
+		<part name="parameters" element="ae:RunReport" /><!-- ae__RunReport::ae__RunReport -->
+	</message>
+
+	<message name="RunReportResponse">
+		<part name="parameters" element="ae:RunReportResponse" /><!-- ae__RunReport::response -->
+	</message>
+
+	<message name="RunReportXml">
+		<part name="parameters" element="ae:RunReportXml" /><!-- ae__RunReportXml::ae__RunReportXml -->
+	</message>
+
+	<message name="RunReportXmlResponse">
+		<part name="parameters" element="ae:RunReportXmlResponse" /><!-- ae__RunReportXml::response -->
+	</message>
+
+	<message name="GetSubmitProjects">
+		<part name="parameters" element="ae:GetSubmitProjects" /><!-- ae__GetSubmitProjects::ae__GetSubmitProjects -->
+	</message>
+
+	<message name="GetSubmitProjectsResponse">
+		<part name="parameters" element="ae:GetSubmitProjectsResponse" /><!-- ae__GetSubmitProjects::response -->
+	</message>
+
+	<message name="CreatePrimaryItem">
+		<part name="parameters" element="ae:CreatePrimaryItem" /><!-- ae__CreatePrimaryItem::ae__CreatePrimaryItem -->
+	</message>
+
+	<message name="CreatePrimaryItemResponse">
+		<part name="parameters" element="ae:CreatePrimaryItemResponse" /><!-- ae__CreatePrimaryItem::response -->
+	</message>
+
+	<message name="CreatePrimaryItems">
+		<part name="parameters" element="ae:CreatePrimaryItems" /><!-- ae__CreatePrimaryItems::ae__CreatePrimaryItems -->
+	</message>
+
+	<message name="CreatePrimaryItemsResponse">
+		<part name="parameters" element="ae:CreatePrimaryItemsResponse" /><!-- ae__CreatePrimaryItems::response -->
+	</message>
+
+	<message name="LinkSubtask">
+		<part name="parameters" element="ae:LinkSubtask" /><!-- ae__LinkSubtask::ae__LinkSubtask -->
+	</message>
+
+	<message name="LinkSubtaskResponse">
+		<part name="parameters" element="ae:LinkSubtaskResponse" /><!-- ae__LinkSubtask::out -->
+	</message>
+
+	<message name="CreateAuxItem">
+		<part name="parameters" element="ae:CreateAuxItem" /><!-- ae__CreateAuxItem::ae__CreateAuxItem -->
+	</message>
+
+	<message name="CreateAuxItemResponse">
+		<part name="parameters" element="ae:CreateAuxItemResponse" /><!-- ae__CreateAuxItem::response -->
+	</message>
+
+	<message name="CreateAuxItems">
+		<part name="parameters" element="ae:CreateAuxItems" /><!-- ae__CreateAuxItems::ae__CreateAuxItems -->
+	</message>
+
+	<message name="CreateAuxItemsResponse">
+		<part name="parameters" element="ae:CreateAuxItemsResponse" /><!-- ae__CreateAuxItems::response -->
+	</message>
+
+	<message name="CreateFileAttachment">
+		<part name="parameters" element="ae:CreateFileAttachment" /><!-- ae__CreateFileAttachment::ae__CreateFileAttachment -->
+	</message>
+
+	<message name="CreateFileAttachmentResponse">
+		<part name="parameters" element="ae:CreateFileAttachmentResponse" /><!-- ae__CreateFileAttachment::response -->
+	</message>
+
+	<message name="CreateNoteAttachment">
+		<part name="parameters" element="ae:CreateNoteAttachment" /><!-- ae__CreateNoteAttachment::ae__CreateNoteAttachment -->
+	</message>
+
+	<message name="CreateNoteAttachmentResponse">
+		<part name="parameters" element="ae:CreateNoteAttachmentResponse" /><!-- ae__CreateNoteAttachment::response -->
+	</message>
+
+	<message name="GetItem">
+		<part name="parameters" element="ae:GetItem" /><!-- ae__GetItem::ae__GetItem -->
+	</message>
+
+	<message name="GetItemResponse">
+		<part name="parameters" element="ae:GetItemResponse" /><!-- ae__GetItem::response -->
+	</message>
+
+	<message name="GetItems">
+		<part name="parameters" element="ae:GetItems" /><!-- ae__GetItems::ae__GetItems -->
+	</message>
+
+	<message name="GetItemsResponse">
+		<part name="parameters" element="ae:GetItemsResponse" /><!-- ae__GetItems::response -->
+	</message>
+
+	<message name="GetItemsByQuery">
+		<part name="parameters" element="ae:GetItemsByQuery" /><!-- ae__GetItemsByQuery::ae__GetItemsByQuery -->
+	</message>
+
+	<message name="GetItemsByQueryResponse">
+		<part name="parameters" element="ae:GetItemsByQueryResponse" /><!-- ae__GetItemsByQuery::response -->
+	</message>
+
+	<message name="GetFileAttachment">
+		<part name="parameters" element="ae:GetFileAttachment" /><!-- ae__GetFileAttachment::ae__GetFileAttachment -->
+	</message>
+
+	<message name="GetFileAttachmentResponse">
+		<part name="parameters" element="ae:GetFileAttachmentResponse" /><!-- ae__GetFileAttachment::response -->
+	</message>
+
+	<message name="TransitionItem">
+		<part name="parameters" element="ae:TransitionItem" /><!-- ae__TransitionItem::ae__TransitionItem -->
+	</message>
+
+	<message name="TransitionItemResponse">
+		<part name="parameters" element="ae:TransitionItemResponse" /><!-- ae__TransitionItem::response -->
+	</message>
+
+	<message name="TransitionItems">
+		<part name="parameters" element="ae:TransitionItems" /><!-- ae__TransitionItems::ae__TransitionItems -->
+	</message>
+
+	<message name="TransitionItemsResponse">
+		<part name="parameters" element="ae:TransitionItemsResponse" /><!-- ae__TransitionItems::response -->
+	</message>
+
+	<message name="GetAvailableTransitions">
+		<part name="parameters" element="ae:GetAvailableTransitions" /><!-- ae__GetAvailableTransitions::ae__GetAvailableTransitions -->
+	</message>
+
+	<message name="GetAvailableTransitionsResponse">
+		<part name="parameters" element="ae:GetAvailableTransitionsResponse" /><!-- ae__GetAvailableTransitions::response -->
+	</message>
+
+	<message name="GetAvailableSubmitTransitions">
+		<part name="parameters" element="ae:GetAvailableSubmitTransitions" /><!-- ae__GetAvailableSubmitTransitions::ae__GetAvailableSubmitTransitions -->
+	</message>
+
+	<message name="GetAvailableSubmitTransitionsResponse">
+		<part name="parameters" element="ae:GetAvailableSubmitTransitionsResponse" /><!-- ae__GetAvailableSubmitTransitions::response -->
+	</message>
+
+	<message name="UpdateFileAttachment">
+		<part name="parameters" element="ae:UpdateFileAttachment" /><!-- ae__UpdateFileAttachment::ae__UpdateFileAttachment -->
+	</message>
+
+	<message name="UpdateFileAttachmentResponse">
+		<part name="parameters" element="ae:UpdateFileAttachmentResponse" /><!-- ae__UpdateFileAttachment::response -->
+	</message>
+
+	<message name="DeleteItems">
+		<part name="parameters" element="ae:DeleteItems" /><!-- ae__DeleteItems::ae__DeleteItems -->
+	</message>
+
+	<message name="DeleteItemsResponse">
+		<part name="parameters" element="ae:DeleteItemsResponse" /><!-- ae__DeleteItems::response -->
+	</message>
+
+	<message name="DeleteItemsByQuery">
+		<part name="parameters" element="ae:DeleteItemsByQuery" /><!-- ae__DeleteItemsByQuery::ae__DeleteItemsByQuery -->
+	</message>
+
+	<message name="DeleteItemsByQueryResponse">
+		<part name="parameters" element="ae:DeleteItemsByQueryResponse" /><!-- ae__DeleteItemsByQuery::out -->
+	</message>
+
+	<message name="DeleteAttachment">
+		<part name="parameters" element="ae:DeleteAttachment" /><!-- ae__DeleteAttachment::ae__DeleteAttachment -->
+	</message>
+
+	<message name="DeleteAttachmentResponse">
+		<part name="parameters" element="ae:DeleteAttachmentResponse" /><!-- ae__DeleteAttachment::out -->
+	</message>
+
+	<message name="GetNoteLoggerInfo">
+		<part name="parameters" element="ae:GetNoteLoggerInfo" /><!-- ae__GetNoteLoggerInfo::ae__GetNoteLoggerInfo -->
+	</message>
+
+	<message name="GetNoteLoggerInfoResponse">
+		<part name="parameters" element="ae:GetNoteLoggerInfoResponse" /><!-- ae__GetNoteLoggerInfo::response -->
+	</message>
+
+	<message name="GetStateChangeHistory">
+		<part name="parameters" element="ae:GetStateChangeHistory" /><!-- ae__GetStateChangeHistory::ae__GetStateChangeHistory -->
+	</message>
+
+	<message name="GetStateChangeHistoryResponse">
+		<part name="parameters" element="ae:GetStateChangeHistoryResponse" /><!-- ae__GetStateChangeHistory::response -->
+	</message>
+
+	<message name="GetUsers">
+		<part name="parameters" element="ae:GetUsers" /><!-- ae__GetUsers::ae__GetUsers -->
+	</message>
+
+	<message name="GetUsersResponse">
+		<part name="parameters" element="ae:GetUsersResponse" /><!-- ae__GetUsers::response -->
+	</message>
+
+	<message name="IsUserValid">
+		<part name="parameters" element="ae:IsUserValid" /><!-- ae__IsUserValid::ae__IsUserValid -->
+	</message>
+
+	<message name="IsUserValidResponse">
+		<part name="parameters" element="ae:IsUserValidResponse" /><!-- ae__IsUserValid::response -->
+	</message>
+
+	<message name="AEWebservicesFaultFault">
+		<part name="fault" element="ae:AEWebservicesFault" />
+	</message>
+
+	<portType name="sbmappservices72PortType">
+		<operation name="Logout">
+			<documentation>Logs out the current active session, releasing license.</documentation>
+			<input message="tns:Logout" />
+			<output message="tns:LogoutResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetVersion">
+			<documentation>Gets the server version.</documentation>
+			<input message="tns:GetVersion" />
+			<output message="tns:GetVersionResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetApplications">
+			<documentation>Gets the list of available applications.</documentation>
+			<input message="tns:GetApplications" />
+			<output message="tns:GetApplicationsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetSolutions">
+			<documentation>Gets the list of available solutions.</documentation>
+			<input message="tns:GetSolutions" />
+			<output message="tns:GetSolutionsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetTables">
+			<documentation>Gets the list of available tables, optionally filtered by solution and/or table type.</documentation>
+			<input message="tns:GetTables" />
+			<output message="tns:GetTablesResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetReports">
+			<documentation>Gets a filtered list of reports.</documentation>
+			<input message="tns:GetReports" />
+			<output message="tns:GetReportsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="RunReport">
+			<documentation>Runs a specified report.</documentation>
+			<input message="tns:RunReport" />
+			<output message="tns:RunReportResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="RunReportXml">
+			<documentation>Service definition of function ae__RunReportXml</documentation>
+			<input message="tns:RunReportXml" />
+			<output message="tns:RunReportXmlResponse" />
+		</operation>
+		<operation name="GetSubmitProjects">
+			<documentation>Gets the list of available projects available for submitting new items, optionally filtered by table id.</documentation>
+			<input message="tns:GetSubmitProjects" />
+			<output message="tns:GetSubmitProjectsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="CreatePrimaryItem">
+			<documentation>Creates a new item, given a project and item data. Creates the item as a sub-item if a parent item is specified.</documentation>
+			<input message="tns:CreatePrimaryItem" />
+			<output message="tns:CreatePrimaryItemResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="CreatePrimaryItems">
+			<documentation>Creates new item(s), given a project and item data. Creates the item(s) as sub-items if a parent item is specified.</documentation>
+			<input message="tns:CreatePrimaryItems" />
+			<output message="tns:CreatePrimaryItemsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="LinkSubtask">
+			<documentation>Links one item to another as a sub-task.</documentation>
+			<input message="tns:LinkSubtask" />
+			<output message="tns:LinkSubtaskResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="CreateAuxItem">
+			<documentation>Creates a new aux item, given a table id and item data.</documentation>
+			<input message="tns:CreateAuxItem" />
+			<output message="tns:CreateAuxItemResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="CreateAuxItems">
+			<documentation>Service definition of function ae__CreateAuxItems</documentation>
+			<input message="tns:CreateAuxItems" />
+			<output message="tns:CreateAuxItemsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="CreateFileAttachment">
+			<documentation>Creates a new attachment, given item id of the item to which it is to be attached, and the file attachment contents.</documentation>
+			<input message="tns:CreateFileAttachment" />
+			<output message="tns:CreateFileAttachmentResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="CreateNoteAttachment">
+			<documentation>attaches note.</documentation>
+			<input message="tns:CreateNoteAttachment" />
+			<output message="tns:CreateNoteAttachmentResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetItem">
+			<documentation>Gets item, given an item id.</documentation>
+			<input message="tns:GetItem" />
+			<output message="tns:GetItemResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetItems">
+			<documentation>Gets items, given a list of item ids.</documentation>
+			<input message="tns:GetItems" />
+			<output message="tns:GetItemsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetItemsByQuery">
+			<documentation>Gets a list of existing items, given a table id, a query where clause, an order by clause (optional) and a maximum return list size.
+			</documentation>
+			<input message="tns:GetItemsByQuery" />
+			<output message="tns:GetItemsByQueryResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetFileAttachment">
+			<documentation>Gets an existing file attachment, given an item id and attachment id.</documentation>
+			<input message="tns:GetFileAttachment" />
+			<output message="tns:GetFileAttachmentResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="TransitionItem">
+			<documentation>Transitions existing item, given the the item id, plus any data to update, and transition id to use a non-default transition.</documentation>
+			<input message="tns:TransitionItem" />
+			<output message="tns:TransitionItemResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="TransitionItems">
+			<documentation>Transitions existing items, given the item ids, plus any data to update, and transition id to use a non-default transition.</documentation>
+			<input message="tns:TransitionItems" />
+			<output message="tns:TransitionItemsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetAvailableTransitions">
+			<documentation>Return available transitions, given an item id and attribute name (may be null or empty).</documentation>
+			<input message="tns:GetAvailableTransitions" />
+			<output message="tns:GetAvailableTransitionsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetAvailableSubmitTransitions">
+			<documentation>Return available Submit transitions, given an item id and attribute name (may be null or empty).</documentation>
+			<input message="tns:GetAvailableSubmitTransitions" />
+			<output message="tns:GetAvailableSubmitTransitionsResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="UpdateFileAttachment">
+			<documentation>Updates an existing attachment, given item id, and the file attachment contents.</documentation>
+			<input message="tns:UpdateFileAttachment" />
+			<output message="tns:UpdateFileAttachmentResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="DeleteItems">
+			<documentation>Service definition of function ae__DeleteItems</documentation>
+			<input message="tns:DeleteItems" />
+			<output message="tns:DeleteItemsResponse" />
+		</operation>
+		<operation name="DeleteItemsByQuery">
+			<documentation>Deletes one or more items, given a table id and a query where clause.</documentation>
+			<input message="tns:DeleteItemsByQuery" />
+			<output message="tns:DeleteItemsByQueryResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="DeleteAttachment">
+			<documentation>Deletes an existing attachment, which may be a note, item link, URL attachment or file attachment, given an attachment id.</documentation>
+			<input message="tns:DeleteAttachment" />
+			<output message="tns:DeleteAttachmentResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetNoteLoggerInfo">
+			<documentation>Returns note logger information.</documentation>
+			<input message="tns:GetNoteLoggerInfo" />
+			<output message="tns:GetNoteLoggerInfoResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetStateChangeHistory">
+			<documentation>Gets the state change history of an existing item, given a table id and internal item id.</documentation>
+			<input message="tns:GetStateChangeHistory" />
+			<output message="tns:GetStateChangeHistoryResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="GetUsers">
+			<documentation>Returns user information one or more users. If getCurrentUser is true, then information about the current user is returned.</documentation>
+			<input message="tns:GetUsers" />
+			<output message="tns:GetUsersResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+		<operation name="IsUserValid">
+			<documentation>Determine if the specified user is valid.</documentation>
+			<input message="tns:IsUserValid" />
+			<output message="tns:IsUserValidResponse" />
+			<fault name="AEWebservicesFault" message="tns:AEWebservicesFaultFault" />
+		</operation>
+	</portType>
+
+	<binding name="sbmappservices72" type="tns:sbmappservices72PortType">
+		<SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="Logout">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetVersion">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetApplications">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetSolutions">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetTables">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetReports">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="RunReport">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="RunReportXml">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+		</operation>
+		<operation name="GetSubmitProjects">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="CreatePrimaryItem">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="CreatePrimaryItems">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="LinkSubtask">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="CreateAuxItem">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="CreateAuxItems">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="CreateFileAttachment">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="CreateNoteAttachment">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetItem">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetItems">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetItemsByQuery">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetFileAttachment">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="TransitionItem">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="TransitionItems">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetAvailableTransitions">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetAvailableSubmitTransitions">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="UpdateFileAttachment">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="DeleteItems">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+		</operation>
+		<operation name="DeleteItemsByQuery">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="DeleteAttachment">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetNoteLoggerInfo">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetStateChangeHistory">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="GetUsers">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="IsUserValid">
+			<SOAP:operation soapAction="" />
+			<input>
+				<SOAP:body parts="parameters" use="literal" />
+			</input>
+			<output>
+				<SOAP:body parts="parameters" use="literal" />
+			</output>
+			<fault name="AEWebservicesFault">
+				<SOAP:fault name="AEWebservicesFault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+
+	<service name="sbmappservices72">
+		<documentation>SBM Application Web Services Version 7.2</documentation>
+		<port name="sbmappservices72" binding="tns:sbmappservices72">
+			<SOAP:address location="http://localhost:80/gsoap/gsoap_ssl.dll?sbmappservices72" />
+		</port>
+	</service>
+
+</definitions>
