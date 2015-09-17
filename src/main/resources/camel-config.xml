@@ -28,7 +28,7 @@
 		<constructor-arg value="target/write" />
 	</bean>
 
-	<cxf:cxfEndpoint id="sbmWebService" address="http://localhost:8080/"
+	<cxf:cxfEndpoint id="sbmWebService" address="{{iti.backend.url}}"
 		serviceClass="localhost._80.gsoap.sbmappservices72_wsdl.Sbmappservices72PortType">
 		<cxf:properties>
 			<entry key="dataFormat" value="POJO" />

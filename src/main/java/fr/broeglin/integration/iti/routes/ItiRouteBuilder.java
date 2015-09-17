@@ -6,13 +6,10 @@ import java.util.Arrays;
 import org.apache.camel.Exchange;
 import org.apache.camel.Expression;
 import org.apache.camel.Message;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.SimpleBuilder;
 import org.apache.camel.component.cxf.common.message.CxfConstants;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.springframework.util.StringUtils;
 
 import sbmappservices72.Auth;
 import sbmappservices72.FieldIdentifier;
@@ -22,6 +19,48 @@ import sbmappservices72.TableIdentifier;
 
 public class ItiRouteBuilder extends RouteBuilder {
 
+  private static final String OPTIONS = "OPTIONS";
+
+  @Override
+  public void configure() throws Exception {
+    onException(Exception.class)
+        .handled(true)
+        .to("log:error?showAll=true&level=ERROR")
+        .setBody(constant("{ \"code\": 000 }"));
+
+    from("cxfrs:bean:rsServer?bindingStyle=SimpleConsumer")
+        .to("log:request?showHeaders=true")
+        .setHeader(CxfConstants.OPERATION_NAME, constant("GetItemsByQuery"))
+        .setProperty(AUTH,
+            createAuth(simple("{{iti.backend.username}}"), simple("{{iti.backend.password}}")))
+        .setProperty(WHERE_CLAUSE,
+            simpleFromProperty(simple("iti.cis.${header.ciType}.where")))
+        .setProperty(ORDER_BY_CLAUSE,
+            simpleFromProperty(simple("iti.cis.${header.ciType}.orderBy")))
+        .setProperty(OPTIONS,
+            createMultipleOptions(simpleFromProperty(simple("iti.cis.${header.ciType}.where"))))
+        .setBody(createRequest())
+        .to("{{iti.cis.endPoint}}")
+        .to("log:responseProcessing?showHeaders=true")
+        // .process(new Processor() {
+        // @Override
+        // public void process(Exchange ex) throws Exception {
+        // ObjectMapper mapper = new ObjectMapper();
+        // ObjectNode node = mapper.createObjectNode();
+        //
+        // node.put("_type", "coucou");
+        //
+        // ex.getIn().setBody(node);
+        // }
+        // })
+        .removeHeaders("*")
+        .to("log:output")
+        .marshal("json");
+  }
+
+  // Plumbing
+
+  private static final String AUTH = "AUTH";
   private static final String ORDER_BY_CLAUSE = "ORDER_BY_CLAUSE";
   private static final String WHERE_CLAUSE = "WHERE_CLAUSE";
   ObjectFactory factory = new ObjectFactory();
@@ -34,11 +73,25 @@ public class ItiRouteBuilder extends RouteBuilder {
     return id;
   }
 
-  private MultipleResponseItemOptions createMultipleOptions() {
-    MultipleResponseItemOptions options = factory.createMultipleResponseItemOptions();
+  private Expression createMultipleOptions(Expression exp) {
 
-    options.getLimitedField().add(createFieldIdentifier("DB FIELD NAME"));
-    return options;
+    return new Expression() {
+
+      @SuppressWarnings("unchecked")
+      @Override
+      public <T> T evaluate(Exchange exchange, Class<T> type) {
+        MultipleResponseItemOptions options = factory.createMultipleResponseItemOptions();
+        String value = exp.evaluate(exchange, String.class);
+
+        
+        if (value != null) {
+          for (String fieldName : value.split(",")) {
+            options.getLimitedField().add(createFieldIdentifier(fieldName));
+          }
+        }
+        return (T) options;
+      }
+    };
   }
 
   private FieldIdentifier createFieldIdentifier(String name) {
@@ -49,53 +102,41 @@ public class ItiRouteBuilder extends RouteBuilder {
     return fieldId;
   }
 
-  @Override
-  public void configure() throws Exception {
-    onException(Exception.class)
-        .handled(true)
-        .to("log:error?showAll=true&level=ERROR")
-        .setBody(constant("{ \"code\": 000 }"));
+  private Expression createAuth(final Expression usernameExp, final Expression passwordExp) {
 
-    from("cxfrs:bean:rsServer?bindingStyle=SimpleConsumer")
-        .to("log:request?showHeaders=true")
-        .setHeader(CxfConstants.OPERATION_NAME, constant("GetItemsByQuery"))
-        .setProperty(WHERE_CLAUSE,
-            simpleFromProperty(simple("cis.${header.ciType}.where")))
-        .setProperty(ORDER_BY_CLAUSE,
-            simpleFromProperty(simple("cis.${header.ciType}.orderBy")))
-        .process(new Processor() {
-          @Override
-          public void process(Exchange exchange) throws Exception {
+    return new Expression() {
 
-            Message msg = exchange.getIn();
-            Auth auth = new Auth();
+      @SuppressWarnings("unchecked")
+      @Override
+      public <T> T evaluate(Exchange exchange, Class<T> type) {
+        Auth auth = new Auth();
+        String username = usernameExp.evaluate(exchange, String.class);
+        String password = passwordExp.evaluate(exchange, String.class);
 
-            exchange.getIn().setBody(Arrays.asList(
-                auth,
-                createTableIdentifier("DBNAME"),
-                exchange.getProperty(WHERE_CLAUSE),
-                exchange.getProperty(ORDER_BY_CLAUSE),
-                BigInteger.valueOf(msg.getHeader("offset", Long.class)),
-                BigInteger.valueOf(msg.getHeader("limit", Long.class)),
-                createMultipleOptions()));
-          }
-        })
-        .to("cxf:bean:sbmWebService")
-        .to("log:responseProcessing?showHeaders=true")
-        .process(new Processor() {
-          @Override
-          public void process(Exchange ex) throws Exception {
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectNode node = mapper.createObjectNode();
+        auth.setUserId(factory.createAuthUserId(username));
+        auth.setPassword(factory.createAuthPassword(password));
+        return (T) auth;
+      }
+    };
+  }
 
-            node.put("_type", "coucou");
+  public Expression createRequest() {
+    return new Expression() {
+      @SuppressWarnings("unchecked")
+      @Override
+      public <T> T evaluate(Exchange exchange, Class<T> type) {
+        Message msg = exchange.getIn();
 
-            ex.getIn().setBody(node);
-          }
-        })
-        .removeHeaders("*")
-        .to("log:output")
-        .marshal("json");
+        return (T) Arrays.asList(
+            exchange.getProperty(AUTH),
+            createTableIdentifier("DBNAME"),
+            exchange.getProperty(WHERE_CLAUSE),
+            exchange.getProperty(ORDER_BY_CLAUSE),
+            BigInteger.valueOf(msg.getHeader("offset", Long.class)),
+            BigInteger.valueOf(msg.getHeader("limit", Long.class)),
+            exchange.getProperty(OPTIONS));
+      }
+    };
   }
 
   private Expression simpleFromProperty(Expression propertyExp) {
